@@ -118,7 +118,7 @@ public class ActiveDirectoryChangeLogSyncStrategy implements LdapSyncStrategy {
             String waterMark = gethighestCommittedUSN();
             
             if (token != null && logger.isWarning()) {
-                if (Long.parseLong(token.getValue().toString()) > Long.parseLong(waterMark)) {
+                if (Integer.parseInt(token.getValue().toString()) > Integer.parseInt(waterMark)) {
                     //[OPENICF-402] The current SyncToken should never be greater than the highestCommittedUSN on the DC
                     // We log the issue and let the process go
                     logger.warn("The current SyncToken value ({0}) is greater than the highestCommittedUSN value ({1})", token.getValue().toString(), waterMark);
